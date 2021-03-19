@@ -1,0 +1,22 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'polling/style.css' %}">
+<div class="VoteDiv">
+  <div class="TagDiv">
+    {% for tag in question.tag_set.all %}
+    <a>{{tag.tagText}}</a>
+    {% endfor %}
+  </div>
+  <h1>{{ question.questionText }}</h1>
+
+  {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+  <form action="{% url 'polling:vote' question.id %}" method="post">
+  {% csrf_token %}
+  {% for choice in question.choice_set.all %}
+      <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+      <label for="choice{{ forloop.counter }}">{{ choice.choiceText }}</label><br>
+  {% endfor %}
+  <hr></hr>
+  <input type="submit" value="Vote">
+  </form>
+</div>

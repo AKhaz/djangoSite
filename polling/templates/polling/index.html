@@ -1,0 +1,23 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'polling/style.css' %}">
+<div class="MainFeed">
+  {% if latestQuestions %}
+      <ul>
+      {% for question in latestQuestions %}
+        <div class="PollDiv">
+          <h2>{{question.questionText}}</h2>
+          <div class="TagDiv">
+            {% for tag in question.tag_set.all %}
+            <a>{{tag.tagText}}</a>
+            {% endfor %}
+          </div>
+          <hr></hr>
+          <p class="PointCount">&#9865; {{question.points}}</p>
+          <a href="{% url 'polling:detail' question.id %}""><button href="{% url 'polling:detail' question.id %}">&#129154;</button></a>
+        </div>
+      {% endfor %}
+      </ul>
+  {% else %}
+      <p>No polls are available.</p>
+  {% endif %}
+</div>
