@@ -6,8 +6,9 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Question(models.Model):
     questionText = models.CharField(max_length=250)
+    #user = models.ForeignKey(User, on_delete=models.CASCADE)
     publicationDate = models.DateTimeField('date published')
-    points = models.IntegerField(default=0)
+    likes = models.IntegerField(default=0)
     def was_published_recently(self):
         now = timezone.now()
         return now - datetime.timedelta(days = 1) <= self.publicationDate <= now

@@ -1,9 +1,14 @@
-<h1>{{ question.questionText}}</h1>
-
-<ul>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'polling/style.css' %}">
+<div class="VoteDiv">
+  <h1>{{ question.questionText}}</h1>
+  <input type="hidden" class="PointCount">&ac; {{question.points}}</input>
   {% for choice in question.choice_set.all %}
-    <li>{{ choice.choiceText}} -- {{choice.votes}} vote{{ choice.votes|pluralize}}</li>
+    <p>{{ choice.choiceText}} -- {{choice.votes}} vote{{ choice.votes|pluralize}}</p>
   {% endfor %}
-</ul>
-
-  <a href = "{% url 'polling:detail' question.id %}">Vote Again</a>
+  <hr></hr>
+  <div class="Space">
+    <a href = "{% url 'polling:detail' question.id %}">Vote Again</a>
+    <a href = "{% url 'polling:index'%}">Return to Feed</a>
+  </div>
+</div>

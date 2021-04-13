@@ -12,7 +12,9 @@
             {% endfor %}
           </div>
           <hr></hr>
-          <p class="PointCount">&#9865; {{question.points}}</p>
+          <form method="POST">
+            <input type="hidden" class="PointCount" name = "like" value = "like">&ac; {{question.points}}</input>
+          </form>
           <a href="{% url 'polling:detail' question.id %}""><button href="{% url 'polling:detail' question.id %}">&#129154;</button></a>
         </div>
       {% endfor %}

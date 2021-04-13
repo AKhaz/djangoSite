@@ -11,7 +11,7 @@ class TagsInLine(admin.TabularInline):
     extra = 2
 
 class QuestionAdmin(admin.ModelAdmin):
-    fields = ["publicationDate", "questionText", "points"]
+    fields = ["publicationDate", "questionText", "likes"]
     inlines = [ChoiceInLine, TagsInLine]
     list_display = ("questionText", "publicationDate", "was_published_recently")
     list_filter = ["publicationDate"]
