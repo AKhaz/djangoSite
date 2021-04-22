@@ -12,16 +12,20 @@ class IndexView(generic.ListView):
     context_object_name = "latestQuestions"
 
     def post(self, request):
-        print(request.POST)
-        return HttpResponse("Hi :)")
-        #   if "like" in request.POST.keys():
-        #        request.POST. (?)
-        #       question = get_object_or_404(Question, pk = question_id)
-        #       question.likes += 1
+        if "Like" in request.POST.keys():
+            #Gets id of question using hidden input tag name
+            id = request.POST.get("questionID")
+            #Makes a variable corresponding with the question's ID
+            question = get_object_or_404(Question, pk = id)
+            #Adds one like to the question and saves
+            question.likes += 1
+            question.save()
+            questions = self.get_queryset()
+            return HttpResponseRedirect(reverse('polling:detail', args = (id)))
 
     def get(self, request):
         questions = self.get_queryset()
-        print("QUESTIONS", questions)
+        # print("QUESTIONS", questions)
         return render(request, "polling/index.html", {"latestQuestions": questions})
 
 

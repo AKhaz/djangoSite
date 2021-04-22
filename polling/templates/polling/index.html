@@ -13,7 +13,9 @@
           </div>
           <hr></hr>
           <form method="POST">
-            <input type="hidden" class="PointCount" name = "like" value = "like">&ac; {{question.points}}</input>
+            {% csrf_token %}
+            <input type="submit" class="PointCount" name = "Like" value = "Like">{{question.likes}}</input>
+            <input type="hidden" name="questionID" value={{question.id}}></input>
           </form>
           <a href="{% url 'polling:detail' question.id %}""><button href="{% url 'polling:detail' question.id %}">&#129154;</button></a>
         </div>

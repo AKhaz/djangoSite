@@ -131,13 +131,8 @@ input{
   filter: drop-shadow(0 0 2em black);
   font-weight: bold;
   font-size: 125%;
-}
-.PointCount {
-  font-family: Arial;
-  color: #3e8948;
-  filter: drop-shadow(0 0 2em black);
-  font-weight: bold;
-  font-size: 125%;
+  width: 5em;
+  height: 5em;
 }
 .Space{
   margin-top: 1.5em;

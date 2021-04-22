@@ -7,7 +7,7 @@
     {% endfor %}
   </div>
   <h1>{{ question.questionText }}</h1>
-  <input type="hidden" class="PointCount">&ac; {{question.points}}</input>
+  <input type="submit" class="PointCount" name="Like" value={{question.likes}}></input>
   {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
   <form action="{% url 'polling:vote' question.id %}" method="post">

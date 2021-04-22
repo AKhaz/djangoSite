@@ -4,10 +4,10 @@
 }
 body {
   /*Linear Gradient, Facing Left (270deg)*/
-  background: linear-gradient(231deg, #181425, #21ce86, #181425, #ff5ae4, #181425);
-  background-size: 850% 850%;
+  background: linear-gradient(231deg, #4949FF, #65A7E7, #49D0FF, #7A49FF);
+  background-size: 600% 600%;
   /*Apply keyframes*/
-  animation: GradientBG 25s ease infinite;
+  animation: GradientBG 15s ease infinite;
 }
 /*Gradient Background Animation/Scrolling*/
 @keyframes GradientBG {
@@ -39,6 +39,9 @@ label{
   text-align: center;
   font-family: Arial;
 }
+input{
+  align-self: Left;
+}
 .PollDiv{
   color: grey;
   background-color: white;
@@ -48,7 +51,7 @@ label{
   align-items: left;
   background-size: cover;
   background-position: center;
-  box-shadow: 0px 0px 64px -16px black;
+  /*box-shadow: 0px 0px 64px -16px black;*/
   /*border: 5px solid white;*/
   margin: auto;
   margin-top: 3em;
@@ -73,24 +76,33 @@ label{
   border-radius: 2em;
   background-color:  #3e8948;
   padding: 0.5em;
+  text-align: center;
 }
 .MainFeed{
-  background-color: #bfbfbf;
+  background-color: #49D0FF;
   width: 80%;
-  height: 100%;
-  overflow: scroll;
+  height: 95%;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+
   text-align: center;
   margin: auto;
   margin-top: 0px;
   padding: 1em;
   border-radius: 2em;
+  box-shadow:  0px 0px 64px -16px black;
 }
 .VoteDiv{
+  font-size: 16px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   margin: auto;
   font-family: Arial;
   background-color: white;
   border-radius: 2em;
-  padding: 1em;
+  padding: 2.5em;
   width: 80%;
   overflow: visible;
 }
@@ -101,4 +113,27 @@ label{
   background-color: #3e8948;
   border-style: none;
   padding: 1em;
+}
+.VoteDiv a{
+  position: relative;
+  width: 100%;
+  color: white;
+  border-radius: 2em;
+  background-color: #3e8948;
+  border-style: none;
+  padding: 1em;
+  text-decoration: none;
+  margin-top: 5em;
+}
+.PointCount {
+  font-family: Arial;
+  color: #3e8948;
+  filter: drop-shadow(0 0 2em black);
+  font-weight: bold;
+  font-size: 125%;
+  width: 5em;
+  height: 5em;
+}
+.Space{
+  margin-top: 1.5em;
 }
