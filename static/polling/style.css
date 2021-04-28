@@ -84,7 +84,6 @@ input{
   height: 95%;
   overflow-y: scroll;
   scroll-behavior: smooth;
-
   text-align: center;
   margin: auto;
   margin-top: 0px;
@@ -125,14 +124,14 @@ input{
   text-decoration: none;
   margin-top: 5em;
 }
-.PointCount {
+.LikeCount {
   font-family: Arial;
   color: #3e8948;
   filter: drop-shadow(0 0 2em black);
   font-weight: bold;
   font-size: 125%;
-  width: 5em;
-  height: 5em;
+  width: 2em;
+  height: 2em;
 }
 .Space{
   margin-top: 1.5em;

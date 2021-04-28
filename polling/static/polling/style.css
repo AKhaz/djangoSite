@@ -71,10 +71,11 @@ input{
   margin-top: 1em;
   margin-bottom: 1em;
 }
-.TagDiv a{
+.Tag{
   color: white;
   border-radius: 2em;
   background-color:  #3e8948;
+  border-style: none;
   padding: 0.5em;
   text-align: center;
 }
@@ -107,7 +108,6 @@ input{
   overflow: visible;
 }
 .VoteDiv input{
-  width: 100%;
   color: white;
   border-radius: 2em;
   background-color: #3e8948;
@@ -125,14 +125,20 @@ input{
   text-decoration: none;
   margin-top: 5em;
 }
-.PointCount {
+.LikeButton {
   font-family: Arial;
-  color: #3e8948;
-  filter: drop-shadow(0 0 2em black);
+  color: white;
+  /* filter: drop-shadow(0 0 2em black); */
   font-weight: bold;
-  font-size: 125%;
-  width: 5em;
-  height: 5em;
+  font-size: 1em;
+  background: #3e8948;
+  border-radius: 2em;
+  border-style: none;
+  min-width: 3em;
+  max-width: 6em;
+  height: 2em;
+  padding: 0px;
+  margin: auto;
 }
 .Space{
   margin-top: 1.5em;

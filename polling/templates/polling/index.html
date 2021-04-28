@@ -6,15 +6,17 @@
       {% for question in latestQuestions %}
         <div class="PollDiv">
           <h2>{{question.questionText}}</h2>
-          <div class="TagDiv">
-            {% for tag in question.tag_set.all %}
-            <a>{{tag.tagText}}</a>
-            {% endfor %}
-          </div>
+          <form method="GET">
+            <div class="TagDiv">
+              {% for tag in question.tag_set.all %}
+              <input type= "submit" class = "Tag" name = "Tag" value = "{{tag.tagText}}"></input>
+              {% endfor %}
+            </div>
+          </form>
           <hr></hr>
           <form method="POST">
             {% csrf_token %}
-            <input type="submit" class="PointCount" name = "Like" value = "Like">{{question.likes}}</input>
+            <input type="submit" class="LikeButton" name = "Like" value = "Like {{question.likes}}"></input>
             <input type="hidden" name="questionID" value={{question.id}}></input>
           </form>
           <a href="{% url 'polling:detail' question.id %}""><button href="{% url 'polling:detail' question.id %}">&#129154;</button></a>

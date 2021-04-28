@@ -24,19 +24,31 @@ class IndexView(generic.ListView):
             return HttpResponseRedirect(reverse('polling:detail', args = (id)))
 
     def get(self, request):
-        questions = self.get_queryset()
+        if "Tag" in request.GET.keys():
+            print(request.GET)
+            # Finds tag value
+            tag = request.GET.get("Tag")
+            questions = self.get_queryset(tag)
+        else:
+            questions = self.get_queryset()
         # print("QUESTIONS", questions)
         return render(request, "polling/index.html", {"latestQuestions": questions})
 
 
-    def get_queryset(self):
-        return Question.objects.filter(
-            publicationDate__lte=timezone.now()
-        ).order_by('publicationDate')[:5]
+    def get_queryset(self, tag = None):
+        if tag == None:
+            return Question.objects.filter(
+                publicationDate__lte=timezone.now()
+            ).order_by('publicationDate')[:5]
+        else:
+            return Question.objects.filter(
+                publicationDate__lte=timezone.now()
+            ).filter(tag__tagText=tag).order_by('publicationDate')[:5]
 
 class DetailView(generic.DetailView):
     model = Question
     template_name = 'polling/detail.html'
+
     def get_queryset(self):
         """
         Excludes any questions that aren't published yet.
