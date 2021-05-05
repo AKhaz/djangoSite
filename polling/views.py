@@ -11,7 +11,12 @@ class IndexView(generic.ListView):
     template_name = "polling/index.html"
     context_object_name = "latestQuestions"
 
+    def checkLogIn(request):
+        return request.user.is_authenticated
+
     def post(self, request):
+        # If the user is logged in, variable is true
+        userLoggedIn = checkLogIn(request)
         if "Like" in request.POST.keys():
             #Gets id of question using hidden input tag name
             id = request.POST.get("questionID")

@@ -3,6 +3,11 @@
 <div class="TitleBar">
   <h1>Polar</h1>
   <hr></hr>
+  {% if userLoggedIn %}
+    <p>Make your vote count {{user.first_name}}!</p>
+  {% else %}
+    <p>You are not logged in. Please log in to post or like polls.</p>
+  {% endif %}
 </div>
 <div class="MainFeed">
   {% if latestQuestions %}

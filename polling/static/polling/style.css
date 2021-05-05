@@ -25,6 +25,16 @@ h2 {
   font-weight: Bold;
   color: black;
 }
+h3 {
+  font-family: Arial;
+  font-weight: Bold;
+  color: black;
+}
+p {
+  font-family: Arial;
+  font-weight: Bold;
+  color: black;
+}
 button{
   background-color: #3e8948;
   color: white;
@@ -48,8 +58,9 @@ input{
   align-self: Left;
 }
 .TitleBar{
+  margin: auto;
   background-color: white;
-  width: 100%;
+  width: 60%;
   height:auto;
   text-align: center;
   align-content: center;
@@ -57,6 +68,7 @@ input{
   border-radius: 10px;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
+  box-shadow: 0px 0px 64px -16px black;
 }
 .PollDiv{
   color: grey;
