@@ -25,7 +25,7 @@ class IndexView(generic.ListView):
 
     def get(self, request):
         if "Tag" in request.GET.keys():
-            print(request.GET)
+            # print(request.GET)
             # Finds tag value
             tag = request.GET.get("Tag")
             questions = self.get_queryset(tag)
@@ -39,11 +39,11 @@ class IndexView(generic.ListView):
         if tag == None:
             return Question.objects.filter(
                 publicationDate__lte=timezone.now()
-            ).order_by('publicationDate')[:5]
+            ).order_by('publicationDate')[:10]
         else:
             return Question.objects.filter(
                 publicationDate__lte=timezone.now()
-            ).filter(tag__tagText=tag).order_by('publicationDate')[:5]
+            ).filter(tag__tagText=tag).order_by('publicationDate')[:10]
 
 class DetailView(generic.DetailView):
     model = Question

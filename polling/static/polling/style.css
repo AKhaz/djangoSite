@@ -15,6 +15,11 @@ body {
   50%{background-position:100% 10%}
   100%{background-position:0% 91%}
 }
+h1 {
+  font-family: Arial;
+  font-weight: Bold;
+  color: black;
+}
 h2 {
   font-family: Arial;
   font-weight: Bold;
@@ -42,12 +47,23 @@ label{
 input{
   align-self: Left;
 }
+.TitleBar{
+  background-color: white;
+  width: 100%;
+  height:auto;
+  text-align: center;
+  align-content: center;
+  align-items: center;
+  border-radius: 10px;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
 .PollDiv{
   color: grey;
   background-color: white;
   width: 500px;
   border-radius: 10px;
-  padding: 16px;
+  padding: 0.5em;
   align-items: left;
   background-size: cover;
   background-position: center;
@@ -82,14 +98,13 @@ input{
 .MainFeed{
   background-color: #49D0FF;
   width: 80%;
-  height: 95%;
+  height: 70%;
   overflow-y: scroll;
   scroll-behavior: smooth;
-
   text-align: center;
   margin: auto;
-  margin-top: 0px;
-  padding: 1em;
+  margin-top: 2em;
+  padding: 0.5em;
   border-radius: 2em;
   box-shadow:  0px 0px 64px -16px black;
 }
@@ -137,7 +152,6 @@ input{
   min-width: 3em;
   max-width: 6em;
   height: 2em;
-  padding: 0px;
   margin: auto;
 }
 .Space{

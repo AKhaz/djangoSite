@@ -1,15 +1,16 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'polling/style.css' %}">
 <div class="VoteDiv">
-  <div class="TagDiv">
-    {% for tag in question.tag_set.all %}
-    <a>{{tag.tagText}}</a>
-    {% endfor %}
-  </div>
+  <form method="GET">
+    <div class="TagDiv">
+      {% for tag in question.tag_set.all %}
+      <input type= "submit" class = "Tag" name = "Tag" value = "{{tag.tagText}}"></input>
+      {% endfor %}
+    </div>
+  </form>
   <h1>{{ question.questionText }}</h1>
   <input type="submit" class="LikeButton" name="Like" value="Like {{question.likes}}""></input>
   {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
   <form action="{% url 'polling:vote' question.id %}" method="post">
   {% csrf_token %}
   {% for choice in question.choice_set.all %}
