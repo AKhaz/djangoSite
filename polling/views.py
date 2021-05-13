@@ -3,6 +3,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
+from django.contrib.auth import authenticate, logout, login
+from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
+
 
 from .models import Choice, Question
 
@@ -11,12 +15,10 @@ class IndexView(generic.ListView):
     template_name = "polling/index.html"
     context_object_name = "latestQuestions"
 
-    def checkLogIn(request):
+    def checkLogIn(self, request):
         return request.user.is_authenticated
 
     def post(self, request):
-        # If the user is logged in, variable is true
-        userLoggedIn = checkLogIn(request)
         if "Like" in request.POST.keys():
             #Gets id of question using hidden input tag name
             id = request.POST.get("questionID")
@@ -27,6 +29,26 @@ class IndexView(generic.ListView):
             question.save()
             questions = self.get_queryset()
             return HttpResponseRedirect(reverse('polling:detail', args = (id)))
+        if "Username" in request.POST.keys():
+            print(request.POST.keys())
+            if "Login" in request.POST.keys():
+                user = authenticate(username = request.POST['Username'], password = request.POST['Password'])
+                if user is not None:
+                    print("Logged in successfully")
+                    login(request, user)
+                else:
+                    print("User not found")
+                    print(user)
+                    pass
+            if "Register" in request.POST.keys():
+                newUser = User(username = request.POST['Username'], password = make_password(request.POST['Password']))
+                newUser.save()
+                login(request, newUser)
+            # If the user is logged in, variable is true
+            userLoggedIn = self.checkLogIn(request)
+            questions = self.get_queryset()
+            return render(request, "polling/index.html", {"latestQuestions": questions})
+
 
     def get(self, request):
         if "Tag" in request.GET.keys():

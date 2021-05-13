@@ -1,10 +1,14 @@
+:root{
+  --button-color: #0099ff;
+  --secondary-color: #ff3399;
+}
 @font-face {
   font-family: bigbold;
   src: url("fonts/bigandbold.otf");
 }
 body {
   /*Linear Gradient, Facing Left (270deg)*/
-  background: linear-gradient(231deg, #4949FF, #65A7E7, #49D0FF, #7A49FF);
+  background: linear-gradient(231deg, #cc00cc, #ff0066, #0099ff);
   background-size: 600% 600%;
   /*Apply keyframes*/
   animation: GradientBG 15s ease infinite;
@@ -36,7 +40,7 @@ p {
   color: black;
 }
 button{
-  background-color: #3e8948;
+  background-color: var(--button-color);
   color: white;
   padding: 10px 10px;
   text-align: center;
@@ -45,6 +49,9 @@ button{
   border-radius: 1em;
   overflow: hidden;
   border: none;
+}
+button:hover{
+  box-shadow: 0px 0px 64px -16px var(--button-color);
 }
 button a{
   text-decoration: none;
@@ -102,13 +109,13 @@ input{
 .Tag{
   color: white;
   border-radius: 2em;
-  background-color:  #3e8948;
+  background-color:  var(--button-color);
   border-style: none;
   padding: 0.5em;
   text-align: center;
 }
 .MainFeed{
-  background-color: #49D0FF;
+  background-color: var(--secondary-color);
   width: 80%;
   height: 70%;
   overflow-y: scroll;
@@ -137,7 +144,7 @@ input{
 .VoteDiv input{
   color: white;
   border-radius: 2em;
-  background-color: #3e8948;
+  background-color: var(--button-color);
   border-style: none;
   padding: 1em;
 }
@@ -146,7 +153,7 @@ input{
   width: 100%;
   color: white;
   border-radius: 2em;
-  background-color: #3e8948;
+  background-color: var(--button-color);
   border-style: none;
   padding: 1em;
   text-decoration: none;
@@ -158,13 +165,16 @@ input{
   /* filter: drop-shadow(0 0 2em black); */
   font-weight: bold;
   font-size: 1em;
-  background: #3e8948;
+  background: var(--button-color);
   border-radius: 2em;
   border-style: none;
   min-width: 3em;
   max-width: 6em;
   height: 2em;
   margin: auto;
+}
+.LikeButton:hover{
+  filter: drop-shadow(0 0 0.3em var(--button-color));
 }
 .Space{
   margin-top: 1.5em;
