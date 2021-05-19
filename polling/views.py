@@ -61,8 +61,9 @@ class IndexView(generic.ListView):
             questions = self.get_queryset(tag)
         else:
             questions = self.get_queryset()
+        userLoggedIn = request.user.is_authenticated
         # print("QUESTIONS", questions)
-        return render(request, "polling/index.html", {"latestQuestions": questions})
+        return render(request, "polling/index.html", {"latestQuestions": questions, "userLoggedIn": userLoggedIn})
 
 
     def get_queryset(self, tag = None):
