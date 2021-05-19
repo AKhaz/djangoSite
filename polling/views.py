@@ -31,16 +31,22 @@ class IndexView(generic.ListView):
                 question.save()
                 questions = self.get_queryset()
                 return HttpResponseRedirect(reverse('polling:detail', args = (id)))
+            if "Logout" in request.POST.keys():
+                # Logs out the user
+                logout(request)
+                userLoggedIn = False
+                questions = self.get_queryset()
+                return render(request, "polling/index.html", {"latestQuestions": questions, "userLoggedIn": userLoggedIn})
         if "Username" in request.POST.keys():
             print(request.POST.keys())
             if "Login" in request.POST.keys():
                 user = authenticate(username = request.POST['Username'], password = request.POST['Password'])
                 if user is not None:
-                    print("Logged in successfully")
+                    #print("Logged in successfully")
                     login(request, user)
                 else:
-                    print("User not found")
-                    print(user)
+                    #print("User not found")
+                    #print(user)
                     pass
             if "Register" in request.POST.keys():
                 newUser = User(username = request.POST['Username'], password = make_password(request.POST['Password']))
@@ -48,7 +54,6 @@ class IndexView(generic.ListView):
                 login(request, newUser)
             # If the user is logged in, variable is true
             userLoggedIn = self.checkLogIn(request)
-            print(userLoggedIn)
             questions = self.get_queryset()
             return render(request, "polling/index.html", {"latestQuestions": questions, "userLoggedIn": userLoggedIn})
 

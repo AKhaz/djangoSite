@@ -1,17 +1,20 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'polling/style.css' %}">
-<!-- <img src=""></img> -->
 <div class="TitleBar">
-  <h1>Polar</h1>
+  <img alt="Polar Icon" src="../../static/polling/images/polarIcon.png" width="180em">
   <hr></hr>
   {% if userLoggedIn %}
     <p>Make your vote count <b>{{user.username}}</b>!</p>
+    <form method="POST">
+      {% csrf_token %}
+      <input type="submit" class="LoginButton" name = "Logout" value = "Logout"></input>
+    </form>
   {% else %}
     <p>You are not logged in. Please log in to post or like polls.</p>
     <form method="POST">
       {% csrf_token %}
-      <input type="text" name = "Username" value = "Username"></input>
-      <input type="password" name = "Password" value = "Password"></input>
+      <input type="text" name = "Username" placeholder="Username"></input>
+      <input type="password" name = "Password" placeholder="Password"></input>
       <input type="submit" class="LoginButton" name = "Login" value = "Login"></input>
       <input type="submit" class="LoginButton" name = "Register" value = "Register"></input>
     </form>
