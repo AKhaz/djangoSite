@@ -4,13 +4,13 @@
   <h1>Polar</h1>
   <hr></hr>
   {% if userLoggedIn %}
-    <p>Make your vote count {{user.first_name}}!</p>
+    <p>Make your vote count <b>{{user.username}}</b>!</p>
   {% else %}
     <p>You are not logged in. Please log in to post or like polls.</p>
     <form method="POST">
       {% csrf_token %}
       <input type="text" name = "Username" value = "Username"></input>
-      <input type="text" name = "Password" value = "Password"></input>
+      <input type="password" name = "Password" value = "Password"></input>
       <input type="submit" class="LoginButton" name = "Login" value = "Login"></input>
       <input type="submit" class="LoginButton" name = "Register" value = "Register"></input>
     </form>
