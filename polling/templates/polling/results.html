@@ -4,7 +4,7 @@
   <h1>{{ question.questionText}}</h1>
   <input type="submit" class="LikeButton" name="Like" value="Like {{question.likes}}""></input>
   {% for choice in question.choice_set.all %}
-    <p>{{ choice.choiceText}} -- {{choice.votes}} vote{{ choice.votes|pluralize}}</p>
+    <p>{{ choice.choiceText}} -- {{choice.votes}} vote{{ choice.votes|pluralize}} </p>
   {% endfor %}
   <hr></hr>
   <div class="Space">

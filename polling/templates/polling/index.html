@@ -4,8 +4,8 @@
   <img class="PolarIcon" alt="Polar Icon" src="../../static/polling/images/polarIcon.png" width="180em">
   <hr></hr>
   {% if userLoggedIn %}
-    <p>Make your vote count <b>{{user.username}}</b>!</p>
-    <button>Create New Post</button>
+    <p>Make your vote count {{user.username}}!</p>
+    <a href="{% url 'polling:post' %}"><button href="{% url 'polling:post' %}">Create New Post</button></a>
     <form method="POST">
       {% csrf_token %}
       <input type="submit" class="LoginButton" name = "Logout" value = "Logout"></input>
@@ -40,7 +40,7 @@
             <input type="submit" class="LikeButton" name = "Like" value = "Like {{question.likes}}"></input>
             <input type="hidden" name="questionID" value={{question.id}}></input>
           </form>
-          <a href="{% url 'polling:detail' question.id %}""><button href="{% url 'polling:detail' question.id %}">&#129154;</button></a>
+          <a href="{% url 'polling:detail' question.id %}"><button href="{% url 'polling:detail' question.id %}">&#129154;</button></a>
         </div>
       {% endfor %}
       </ul>

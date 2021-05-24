@@ -1,0 +1,14 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'polling/style.css' %}">
+<div class="VoteDiv">
+  <h1>Create Post</h1>
+  <form method="POST">
+    {% csrf_token %}
+    <input type="text" name = "Title" placeholder="Title"></input>
+    <input type="text" name = "BodyText" placeholder="Body Text"></input>
+  </form>
+  <hr></hr>
+  <div class="Space">
+    <a href = "{% url 'polling:index'%}">Return to Feed</a>
+  </div>
+</div>

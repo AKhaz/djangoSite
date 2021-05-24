@@ -1,21 +1,19 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-from django.views import generic
+from django.views import generic, View
 from django.utils import timezone
 from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
-
-
 from .models import Choice, Question
 
-# Create your views here.
 class IndexView(generic.ListView):
     template_name = "polling/index.html"
     context_object_name = "latestQuestions"
 
     def checkLogIn(self, request):
+        # Double checks if the user is signed in, returns bool
         return request.user.is_authenticated
 
     def post(self, request):
@@ -34,6 +32,7 @@ class IndexView(generic.ListView):
             if "Logout" in request.POST.keys():
                 # Logs out the user
                 logout(request)
+                # Obviously sets the check for login to false, since the user just signed out
                 userLoggedIn = False
                 questions = self.get_queryset()
                 return render(request, "polling/index.html", {"latestQuestions": questions, "userLoggedIn": userLoggedIn})
@@ -91,17 +90,32 @@ class DetailView(generic.DetailView):
         """
         return Question.objects.filter(publicationDate__lte=timezone.now())
 
+class PostView(View):
+    template_name = 'polling/createPost.html'
+
+    def get(self, request):
+        return render(request, self.template_name, {})
+    def get_queryset(self):
+        """
+        Excludes any questions that aren't published yet.
+        """
+        return Question.objects.filter(publicationDate__lte=timezone.now())
+
 class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polling/results.html'
 
 def vote(request, question_id):
+    # Get the question ID
     question = get_object_or_404(Question, pk = question_id)
     try:
+        # Gets the selected choice
         selected_choice = question.choice_set.get(pk = request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
+        # Returns with error message if no answer is selected
         return render(request, 'polling/detail.html', {'question' : question, 'error_message' : "No answer was selected."})
     else:
+        # Otherwise, add one to the votes and send the user to the results screen
         selected_choice.votes += 1
         selected_choice.save()
         return HttpResponseRedirect(reverse('polling:results', args = (question.id,)))

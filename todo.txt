@@ -1,5 +1,5 @@
 To Do:
 - Make tag searching in detail view possible.
-- 1 Like per Account
 - Better Vote Display
 - Create Post Functionality
+- Maybe User Page?
