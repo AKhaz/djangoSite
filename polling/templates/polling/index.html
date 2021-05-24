@@ -1,10 +1,11 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'polling/style.css' %}">
 <div class="TitleBar">
-  <img alt="Polar Icon" src="../../static/polling/images/polarIcon.png" width="180em">
+  <img class="PolarIcon" alt="Polar Icon" src="../../static/polling/images/polarIcon.png" width="180em">
   <hr></hr>
   {% if userLoggedIn %}
     <p>Make your vote count <b>{{user.username}}</b>!</p>
+    <button>Create New Post</button>
     <form method="POST">
       {% csrf_token %}
       <input type="submit" class="LoginButton" name = "Logout" value = "Logout"></input>

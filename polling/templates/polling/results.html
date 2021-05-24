@@ -2,7 +2,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'polling/style.css' %}">
 <div class="VoteDiv">
   <h1>{{ question.questionText}}</h1>
-  <input type="hidden" class="PointCount">&ac; {{question.points}}</input>
+  <input type="submit" class="LikeButton" name="Like" value="Like {{question.likes}}""></input>
   {% for choice in question.choice_set.all %}
     <p>{{ choice.choiceText}} -- {{choice.votes}} vote{{ choice.votes|pluralize}}</p>
   {% endfor %}
