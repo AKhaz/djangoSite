@@ -164,9 +164,9 @@ input{
   border-radius: 2em;
   background-color: var(--button-color);
   border-style: none;
-  padding: 1em;
+  padding: 0.5em;
   text-decoration: none;
-  margin-top: 5em;
+  margin: auto;
 }
 .LikeButton {
   font-family: Arial;
@@ -187,4 +187,34 @@ input{
 }
 .Space{
   margin-top: 1.5em;
+}
+.InputFormBox {
+  font-family: Arial;
+  color: white;
+  /* filter: drop-shadow(0 0 2em black); */
+  font-weight: bold;
+  font-size: 1em;
+  background: var(--button-color);
+  border-radius: 2em;
+  border-style: none;
+  min-width: 3em;
+  height: 2.5em;
+  margin: auto;
+}
+.InputFormBox::placeholder {
+  font-family: Arial;
+  font-weight: lighter;
+  color: white;
+  opacity: 50%;
+}
+.InputTextArea {
+  font-family: Arial;
+  color: black;
+  /* filter: drop-shadow(0 0 2em black); */
+  font-weight: bold;
+  font-size: 1em;
+  border-radius: 0.5em;
+  border-style: groove;
+  margin: auto;
+  padding: 1em;
 }

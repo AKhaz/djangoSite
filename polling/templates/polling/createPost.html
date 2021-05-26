@@ -1,14 +1,21 @@
 {% load static %}
+<script defer type="text/javascript" src="{% static 'polling/createPost.js' %}"></script>
 <link rel="stylesheet" type="text/css" href="{% static 'polling/style.css' %}">
 <div class="VoteDiv">
   <h1>Create Post</h1>
   <form method="POST">
     {% csrf_token %}
-    <input type="text" name = "Title" placeholder="Title"></input>
-    <input type="text" name = "BodyText" placeholder="Body Text"></input>
+    <input class="InputFormBox" type="text" name = "Title" placeholder="Title" style="width:50%"></input>
+    <textarea class="InputTextArea" name = "BodyText" placeholder="Body Text" rows="10" style="width:100%"></textarea>
+    <hr></hr>
+    <h2>Create Choices</h2>
+    <a id = "NewChoice" onclick="createNewChoice()">+ Choice</a>
+    <div id ="NewChoiceDiv">
+    </div>
+    <hr></hr>
+    <div class="Space">
+      <input type="submit" class="LikeButton" name="Submit" value="Submit"></input>
+      <a href = "{% url 'polling:index'%}">Return to Feed</a>
+    </div>
   </form>
-  <hr></hr>
-  <div class="Space">
-    <a href = "{% url 'polling:index'%}">Return to Feed</a>
-  </div>
 </div>
