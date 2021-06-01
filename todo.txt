@@ -1,5 +1,3 @@
 To Do:
-- Make tag searching in detail view possible.
-- Better Vote Display
 - Create Post Functionality
 - Maybe User Page?

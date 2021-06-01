@@ -18,6 +18,7 @@
       <label for="choice{{ forloop.counter }}">{{ choice.choiceText }}</label><br>
   {% endfor %}
   <hr></hr>
-  <input type="submit" value="Vote">
+  <input type="submit" class="LikeButton" value="Vote">
+  <a href = "{% url 'polling:index'%}">Return to Feed</a>
   </form>
 </div>

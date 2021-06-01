@@ -44,9 +44,8 @@ class IndexView(generic.ListView):
                     #print("Logged in successfully")
                     login(request, user)
                 else:
-                    #print("User not found")
-                    #print(user)
-                    pass
+                    questions = self.get_queryset()
+                    return render(request, 'polling/index.html', {'latestQuestions' : questions, "userLoggedIn": userLoggedIn, 'error_message' : "Cannot find user with login info."})
             if "Register" in request.POST.keys():
                 newUser = User(username = request.POST['Username'], password = make_password(request.POST['Password']))
                 newUser.save()
@@ -95,6 +94,11 @@ class PostView(View):
 
     def get(self, request):
         return render(request, self.template_name, {})
+
+    # def post(self, request):
+    #     # Create a new question based on the keys in the request (which come from the template)
+    #     newPost = question.objects.create(questionText = request.POST['BodyText'], publicationDate = timezone.now())
+
     def get_queryset(self):
         """
         Excludes any questions that aren't published yet.

@@ -6,5 +6,5 @@ function createNewChoice(){
   for (i = 0; i <= allChoices; i++){
     choiceNum += 1;
   }
-  choiceDiv.innerHTML += "<input class='InputFormBox' type='text' name = '" + choiceNum + "' placeholder='" + choiceNum + "'></input>"
+  choiceDiv.innerHTML += "<input class='InputFormBox' type='text' name = 'Option" + choiceNum + "' placeholder='Option " + choiceNum + "'></input>"
 }
