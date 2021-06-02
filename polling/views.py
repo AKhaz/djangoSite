@@ -75,6 +75,7 @@ class IndexView(generic.ListView):
                 publicationDate__lte=timezone.now()
             ).order_by('publicationDate')[:10]
         else:
+            #if there IS a tag, sort using the tag text
             return Question.objects.filter(
                 publicationDate__lte=timezone.now()
             ).filter(tag__tagText=tag).order_by('publicationDate')[:10]
@@ -84,9 +85,7 @@ class DetailView(generic.DetailView):
     template_name = 'polling/detail.html'
 
     def get_queryset(self):
-        """
-        Excludes any questions that aren't published yet.
-        """
+        # Excludes any questions that aren't published yet.
         return Question.objects.filter(publicationDate__lte=timezone.now())
 
 class PostView(View):
@@ -95,9 +94,20 @@ class PostView(View):
     def get(self, request):
         return render(request, self.template_name, {})
 
-    # def post(self, request):
-    #     # Create a new question based on the keys in the request (which come from the template)
-    #     newPost = question.objects.create(questionText = request.POST['BodyText'], publicationDate = timezone.now())
+    def post(self, request):
+        # # Create a new question based on the keys in the request (which come from the template)
+        newPost = Question(questionText = request.POST['BodyText'], publicationDate = timezone.now())
+        newPost.save()
+        # # loop through all option/choice keys and create corresponding choices to question
+        # print(request.POST.keys())
+        for key in request.POST.keys():
+            if "Option" in key:
+                newOption = Choice(question = newPost, choiceText = request.POST[key])
+                # print(newOption)
+                newOption.save()
+            # print(newPost)
+        return HttpResponseRedirect(reverse('polling:detail', args = (newPost.id,)))
+
 
     def get_queryset(self):
         """
@@ -123,8 +133,3 @@ def vote(request, question_id):
         selected_choice.votes += 1
         selected_choice.save()
         return HttpResponseRedirect(reverse('polling:results', args = (question.id,)))
-
-def userPage(request, id):
-    user = User.objects.filter(id=id)
-    userPosts = Question.objects.filter(userPosted = id)
-    latestPosts = userPosts.order_by('-publicationDate')[:5]

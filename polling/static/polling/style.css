@@ -82,6 +82,7 @@ input{
   align-items: center;
   border-radius: 10px;
   box-shadow: 0px 0px 64px -16px black;
+  padding-bottom: 0.3em;
 }
 .PollDiv{
   color: grey;
@@ -92,7 +93,7 @@ input{
   align-items: left;
   background-size: cover;
   background-position: center;
-  /*box-shadow: 0px 0px 64px -16px black;*/
+  box-shadow: 0px 0px 32px -16px black;
   /*border: 5px solid white;*/
   margin: auto;
   margin-top: 3em;
@@ -150,10 +151,8 @@ input{
 }
 .VoteDiv input{
   color: white;
-  border-radius: 2em;
   background-color: var(--button-color);
   border-style: none;
-  padding: 1em;
 }
 .VoteDiv a{
   position: relative;
@@ -165,6 +164,21 @@ input{
   padding: 0.5em;
   text-decoration: none;
   margin: auto;
+}
+#MajorButton{
+  font-family: Arial;
+  color: white;
+  /* filter: drop-shadow(0 0 2em black); */
+  font-weight: bold;
+  font-size: 1em;
+  background: var(--secondary-color);
+  border-radius: 2em;
+  border-style: none;
+  min-width: 3em;
+  max-width: 6em;
+  height: 2em;
+  margin: auto;
+  padding: 0.5em;
 }
 .LikeButton {
   font-family: Arial;
@@ -179,6 +193,7 @@ input{
   max-width: 6em;
   height: 2em;
   margin: auto;
+  padding: 0.5em;
 }
 .LikeButton:hover{
   filter: drop-shadow(0 0 0.3em var(--button-color));
@@ -197,7 +212,8 @@ input{
   border-style: none;
   min-width: 3em;
   height: 2.5em;
-  margin: auto;
+  margin: 0.5em;
+  margin-left: 0px;
 }
 .InputFormBox::placeholder {
   font-family: Arial;

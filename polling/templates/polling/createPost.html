@@ -5,7 +5,7 @@
   <h1>Create Post</h1>
   <form method="POST">
     {% csrf_token %}
-    <textarea class="InputTextArea" name = "BodyText" placeholder="Body Text" rows="10" style="width:100%"></textarea>
+    <textarea class="InputTextArea" name = "BodyText" placeholder="Body Text" rows="3" style="width:100%"></textarea>
     <hr></hr>
     <h2>Create Choices</h2>
     <a id = "NewChoice" onclick="createNewChoice()">+ Choice</a>
@@ -13,7 +13,8 @@
     </div>
     <hr></hr>
     <div class="Space">
-      <input type="submit" class="LikeButton" name="Submit" value="Submit"></input>
+      <p>Only approved posts can have tags. This is so that searchable posts cannot contain specific material. Read our site's rules for more information.</p>
+      <input type="submit" id="MajorButton" name="Submit" value="Submit"></input>
       <a href = "{% url 'polling:index'%}">Return to Feed</a>
     </div>
   </form>
