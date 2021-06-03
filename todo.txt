@@ -1,3 +1,0 @@
-To Do:
-- Create Post Functionality
-- Maybe User Page?

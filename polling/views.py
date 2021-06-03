@@ -28,7 +28,7 @@ class IndexView(generic.ListView):
                 question.likes += 1
                 question.save()
                 questions = self.get_queryset()
-                return HttpResponseRedirect(reverse('polling:detail', args = (id)))
+                return HttpResponseRedirect(reverse('polling:detail', args = (id,)))
             if "Logout" in request.POST.keys():
                 # Logs out the user
                 logout(request)
@@ -47,6 +47,7 @@ class IndexView(generic.ListView):
                     questions = self.get_queryset()
                     return render(request, 'polling/index.html', {'latestQuestions' : questions, "userLoggedIn": userLoggedIn, 'error_message' : "Cannot find user with login info."})
             if "Register" in request.POST.keys():
+                #Makes new user entry and saves it
                 newUser = User(username = request.POST['Username'], password = make_password(request.POST['Password']))
                 newUser.save()
                 login(request, newUser)
@@ -101,11 +102,13 @@ class PostView(View):
         # # loop through all option/choice keys and create corresponding choices to question
         # print(request.POST.keys())
         for key in request.POST.keys():
+            #Create a new option for every key that has the word "option" (keys are made by template) and sent through form
             if "Option" in key:
                 newOption = Choice(question = newPost, choiceText = request.POST[key])
                 # print(newOption)
                 newOption.save()
             # print(newPost)
+        #sends the user to the detail view/template of the newly created question/post
         return HttpResponseRedirect(reverse('polling:detail', args = (newPost.id,)))
 
 
